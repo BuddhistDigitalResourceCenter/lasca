@@ -1,0 +1,27 @@
+{
+  "name": "lasca",
+  "version": "1.0.0",
+  "description": "Unicode Collation Algorithm Javascript Implementation",
+  "main": "src/lasca.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BuddhistDigitalResourceCenter/lasca.git"
+  },
+  "keywords": [
+    "unicode",
+    "collation",
+    "uca"
+  ],
+  "author": "teradata.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BuddhistDigitalResourceCenter/lasca/issues"
+  },
+  "homepage": "https://github.com/BuddhistDigitalResourceCenter/lasca"
+}

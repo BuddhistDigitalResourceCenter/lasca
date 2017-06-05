@@ -35,7 +35,6 @@ Features
 * Runs in the browser or Node.js
 * AMD compliant and exportable – attempts to use define() or module.exports (node.js); if those efforts fail then lasca attaches to global root	
 * Useful for automated internationalized testing in browsers
-* Available without UCA collation definitions (lasca.nouca.min.js 3.33KB as opposed to 105KB for lasca.min.js)
 
 API
 ---
@@ -93,7 +92,6 @@ Collation table definitions are object literals with the properties below. These
 more than one code point a '+' operator is used to signify that the code points should be considered a single character. This differs from the standard 
 JavaScript character definition, which is a single 16 bit code point.
 * compare – Sets the sorting type. 'multi' is for languages that can have more than one code point per character. 'single' is for languages that only have one 16 bit code point per character.
-* More information on collation tables can be found at http://www.collation-charts.org/
 
 ### Examples
 
@@ -109,12 +107,5 @@ JavaScript character definition, which is a single 16 bit code point.
 
 License
 -------
-Copyright © 2011-2012 by Teradata Corporation.
 
-Issued under the MIT License
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+The code in this repository is under the [MIT License](LICENSE).
