@@ -14,11 +14,9 @@
 What is lasca good for? Lasca will not solve all your problems. However, lasca is very logical and despises disorder. Lasca solves the following issues.
 
 * String.localeCompare results vary between platform and browser combinations. Lasca normalizes locale based sorting by using its own local copies of the 
-[UCA collation tables][1] or developer defined collation tables.
+[UCA collation tables](http://unicode.org/charts/collation/) or developer defined collation tables.
 * Sorting results often differ between the front-end and the back-end because they use different collation tables. Lasca can use any collation table and/or 
 sorting algorithm you provide. Lasca will also run in Node.js, so you can share collation tables between the front-end and back-end.
-
-[1]: http://www.unicode.org/charts/uca/
 
 Development Status
 ------------------

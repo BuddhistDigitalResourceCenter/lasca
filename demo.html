@@ -1,0 +1,27 @@
+<!doctype html
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="src/lasca.js"></script> 
+<script>
+lasca.setLanguage("real_tibetan");
+var tibSortedArray = ["ང", "རྔ", "ལྔ", "སྔ", "བརྔ", "བསྔ", "ཅ"];
+var tibRandomArray = ["ལྔ", "ང", "ཅ", "རྔ", "སྔ", "བརྔ", "བསྔ"];
+var tibResultArray = ["ལྔ", "ང", "ཅ", "རྔ", "སྔ", "བརྔ", "བསྔ"];
+tibResultArray.sort(lasca.compare);
+var resPrint = "";
+if (JSON.stringify(tibSortedArray)==JSON.stringify(tibResultArray)) {
+  resPrint = "ok!";
+} else {
+  resPrint = "error: "+JSON.stringify(tibRandomArray)+" has been sorted as "+JSON.stringify(tibResultArray)+", should have been "+JSON.stringify(tibSortedArray);
+}
+console.log(resPrint);
+window.onload = function() {
+  document.getElementById("sortingresult").innerHTML = resPrint;
+}
+</script>
+</head>
+<body>
+Sorting Tibetan... <span id="sortingresult"></span>
+</body>
+</html>
