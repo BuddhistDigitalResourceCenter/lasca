@@ -130,17 +130,15 @@
 
     // convert encodings to characters and find multi code point characters
     var buildTable = function (table) {
-        var codePoints, tableArray, i = 0, len = 0, counter = 0, buffer = '', next = '',
+        var codePoints = [], codePointsHash = {}, tableArray, i = 0, len = 0, counter = 0, buffer = '', next = '',
             multiCodePoints = [], bufferArray = [], bufferLiteral;
         /*
          * TODO: more advanced sorting on loading might be needed for a,b sorts on mutli point letter languages
          * if a smaller substring is weighted greater than a string, e.g, 'cs' > 'ccs'. 
-         */        
-        var sortMultiCodePoint = function () {};                
+         */                       
         
         tableArray = table.split('');
         len = tableArray.length;
-        codePoints = [];
         
         for (i; i<len; i++) {
             if (tableArray[i] !== '+') {                    
@@ -158,8 +156,8 @@
                     bufferArray.shift();                          
                     for (var j = 0; j<bufferArray.length; j++)
                         bufferLiteral += String.fromCharCode(parseInt('0x' + bufferArray[j], 16));                         
-                                                               
                     codePoints.push(bufferLiteral);
+                    codePointsHash[bufferLiteral] = i;
                     if (bufferArray.length > 1) 
                         multiCodePoints.push({ codePoints : bufferLiteral, collationWeight : (codePoints.length - 1) });     
  
@@ -171,10 +169,13 @@
         }                 
        
         lasca.language.collation = codePoints;
+        lasca.language.collationHash = codePointsHash;
         if (multiCodePoints.length) { 
             lasca.language.multiLetters = multiCodePoints;
-            sortMultiCodePoint();    
-        } 
+            multiCodePoints.sort();
+        }
+
+
     };
     
     // single code point language comparator
@@ -187,13 +188,10 @@
         if (a === b) return 0;
         
         var aArray, bArray, aIndex, bIndex, collation = lasca.language.collation, i = 0, len = 0, 
-            collationLen = lasca.language.collationLength;     
+            collationLen = lasca.language.collationLength, collationHash = lasca.language.collationHash;
         var collationPosition = function (c) {
-            var i = 0;
-            for (i=0; i<collationLen; i++)                
-                if (collation[i] === c) return i;
-
-            return -1;               
+            var res = collationHash[c];
+            return res === null ? -1 : res;
         }; 
         
         aArray = a.split('');
@@ -228,14 +226,11 @@
         
         var multiPointIndexes = {}, multiSearch = false, aArray, bArray, i = 0, length = 0,
             aHashPoint = -1, bHashPoint = -1, aIndex = -1, bIndex = -1, collationLen = lasca.language.collationLength,
-            collation = lasca.language.collation, aI = 0, bI = 0;
-        var collationPosition = function (c) { 
-            var i = 0;
-            for (i=0; i<collationLen; i++)                
-                if (collation[i] === c) return i;
-
-            return -1;               
-        };             
+            collation = lasca.language.collation, aI = 0, bI = 0, collationHash = lasca.language.collationHash;
+        var collationPosition = function (c) {
+            var res = collationHash[c];
+            return res === null ? -1 : res;
+        };            
         
         multiPointIndexes.a = {};
         multiPointIndexes.b = {};
@@ -375,7 +370,7 @@
                    that.language = languages[i]; 
                    if (!that.language.compiled)
                        createTable(); 
-                   break;                        
+                   break;
                 }                
             }                          
         }
@@ -429,7 +424,7 @@
         return;                        
     };
 
-    //lasca.setLanguage(languages[0].key); // set default collation; first language in the stack
+    // lasca.setLanguage(languages[0].key); // set default collation; first language in the stack
 
     // export lasca
     if (server) {
