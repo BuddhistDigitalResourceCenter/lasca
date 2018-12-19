@@ -11,7 +11,7 @@
  |           |
 ````
 
-What is lasca good for? Lasca will not solve all your problems. However, lasca is very logical and despises disorder. Lasca solves the following issues.
+What is lasca good for? Lasca will not solve all your problems. However, lasca is very logical and despises disorder. Lasca solves the following issues. 
 
 * String.localeCompare results vary between platform and browser combinations. Lasca normalizes locale based sorting by using its own local copies of the 
 [UCA collation tables](http://unicode.org/charts/collation/) or developer defined collation tables.
